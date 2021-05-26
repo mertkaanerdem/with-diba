@@ -1,9 +1,13 @@
 import React from 'react';
+import Form from './components/Forms/Form.js'
+import Posts from './components/Posts/Posts.js'
+
 
 const App = () => {
     return (
-        <div>
-            <h1>App</h1>
+        <div className="container mx-auto px-4 flex flex-row">
+            <Posts />
+            <Form/>
         </div>
     )
 }
