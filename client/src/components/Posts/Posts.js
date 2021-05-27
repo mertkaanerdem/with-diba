@@ -1,9 +1,14 @@
 import React from "react";
+import PostCard from "./PostCard/PostCard";
 
 export default function Posts() {
   return (
-    <div className="w-3/4 bg-yellow-500">
-      <h1>Posts</h1>
-    </div>
+    <>
+      <div>
+        <h1 className="bg-yellow-500">Posts</h1>
+        <PostCard />
+        <PostCard />
+      </div>
+    </>
   );
 }
