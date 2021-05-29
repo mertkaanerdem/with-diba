@@ -12,10 +12,17 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: (theme) => ({
+        "hero-pattern": "url('./bg.jpg')",
+      }),
+    },
   },
   variants: {
-    extend: {},
+    extend: {
+      saturate: ["hover", "focus"],
+      placeholderColor: ["hover", "active"],
+    },
   },
   plugins: [],
 };
