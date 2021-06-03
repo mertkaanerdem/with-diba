@@ -1,8 +1,21 @@
-import React from "react";
-import Form from "./components/Forms/Form.js";
-import Posts from "./components/Posts/Posts.js";
+import React, {useEffect} from "react";
+import Form from "./components/Forms/Form";
+import Posts from "./components/Posts/Posts";
+
+import {useDispatch} from 'react-redux'
+
+import {getPosts} from './actions/posts'
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  },[dispatch])
+
+
+
+
   return (
     <div className="bg-hero-pattern bg-auto bg-no-repeat bg-cover  bg-center">
     <div className="container mx-auto py-2 ">
@@ -20,7 +33,7 @@ const App = () => {
         />
       </div>
 
-      <div className="flex flex-col md:flex-row gap-2 px-2" >
+      <div className="flex flex-col-reverse md:flex-row gap-2 px-2" >
         <div className="p-4 w-full md:w-2/3 ">
           <Posts/>
         </div>

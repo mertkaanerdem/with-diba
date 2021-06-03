@@ -1,15 +1,19 @@
 import React from "react";
 
-export default function PostCard() {
+export default function PostCard(props) {
   return (
     <div className="relative m-2 rounded-2xl shadow-md flex flex-col bg-gray-50">
       <div className="max-h-52  overflow-hidden filter saturate-0 hover:saturate-100 duration-1000 rounded-t-2xl">
-        <img src={"/diba.jpg"} className="w-full" alt="Annesini tanımıyorum" />
+        <img
+          src={props.selectedFile}
+          className="w-full"
+          alt="Annesini tanımıyorum"
+        />
       </div>
 
       <div className="absolute inset-x-0 flex flex-row justify-between">
         <div className="rounded-sm p-1 mx-3">
-          <p className="text-gray-200 font-bold text-xl">Diba</p>
+          <p className="text-gray-200 font-bold text-xl">{props.creator}</p>
           <p className="text-gray-200 font-bold bg-black bg-opacity-60 p-1 rounded-md">
             Senelerden Geçtiğimiz Seneler
           </p>
@@ -22,21 +26,12 @@ export default function PostCard() {
 
       <div className="p-1 mx-3">
         <div>
-          <p className="text-gray-400">#etiket-1 #etiket-2</p>
+          <p className="text-gray-400">{props.tags}</p>
         </div>
 
         <div>
-          <p className="font-bold text-2xl text-center">Başlık burada olacak</p>
-          <p className="py-2 text-justify">
-            Enim tempor est id voluptate nisi elit ex eiusmod ea nostrud. Ea
-            consectetur adipisicing nostrud occaecat. Labore qui consequat
-            occaecat sunt esse et occaecat consequat mollit ea. Adipisicing
-            exercitation amet exercitation non sunt est aute est sunt
-            exercitation. Nulla duis irure eiusmod reprehenderit qui incididunt
-            commodo consequat anim irure minim ex. Labore Lorem qui culpa qui
-            minim aute aliquip veniam enim cupidatat in excepteur consequat
-            cillum.
-          </p>
+          <p className="font-bold text-2xl text-center">{props.title}</p>
+          <p className="py-2 text-justify">{props.message}</p>
         </div>
 
         <div className="inset-x-4 py-2 flex flex-row justify-between">
