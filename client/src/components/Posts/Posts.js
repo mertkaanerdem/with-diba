@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import PostCard from "./PostCard/PostCard";
 
-export default function Posts() {
+export default function Posts({ setCurrentId }) {
   const posts = useSelector((state) => state.posts);
 
   console.log(posts);
@@ -22,13 +22,8 @@ export default function Posts() {
   ) : (
     <div className="flex w-full flex-column-reverse md:flex-row flex-wrap">
       {posts.map((post) => (
-        <div key={post._id} className="lg:w-1/2 w-full">
-          <PostCard
-            title={post.title}
-            message={post.message}
-            tags={post.tags}
-            selectedFile={post.selectedFile}
-          />
+        <div key={post._id} className="lg:w-1/2 w-full mb-4">
+          <PostCard posts={post} />
         </div>
       ))}
     </div>
