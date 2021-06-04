@@ -32,7 +32,7 @@ export default function PostCard({ posts, setCurrentId }) {
 
       <div className="p-1 mx-3">
         <div>
-          <p className="text-gray-400">{posts.tags}</p>
+          <p className="text-gray-400">{posts.tags.map((tag) => `#${tag}`)}</p>
         </div>
 
         <div>
@@ -41,7 +41,7 @@ export default function PostCard({ posts, setCurrentId }) {
         </div>
 
         <div className="inset-x-4 absolute bottom-1 flex flex-row justify-between">
-          <button>
+          <button onClick={() => {}}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 hover:text-red-500 duration-400 cursor-pointer "
@@ -54,9 +54,10 @@ export default function PostCard({ posts, setCurrentId }) {
                 clipRule="evenodd"
               />
             </svg>
+            {posts.likeCount}
           </button>
 
-          <button>
+          <button onClick={() => {}}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 hover:text-yellow-500 duration-400 cursor-pointer "

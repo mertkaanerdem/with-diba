@@ -23,7 +23,7 @@ export default function Posts({ setCurrentId }) {
     <div className="flex w-full flex-column-reverse md:flex-row flex-wrap">
       {posts.map((post) => (
         <div key={post._id} className="lg:w-1/2 w-full mb-4">
-          <PostCard posts={post} />
+          <PostCard posts={post} setCurrentId={setCurrentId} />
         </div>
       ))}
     </div>

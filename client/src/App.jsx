@@ -15,7 +15,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="bg-hero-pattern bg-auto bg-no-repeat bg-cover  bg-center">
+    <div>
       <div className="container mx-auto py-2 ">
         <div className="m-2 rounded-md shadow-md flex justify-center items-center m-2 p-5 bg-gradient-to-r from-gray-50  to-blue-100 ">
           <h1 className="text-4xl font-bold px-4">With Diba</h1>

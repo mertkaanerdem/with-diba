@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FileBase from "react-file-base64";
-import { useDispatch } from "react-redux";
-import { createPost } from "../../actions/posts";
+import { useDispatch, useSelector } from "react-redux";
+import { createPost, updatePost } from "../../actions/posts";
 
 export default function Form({ currentId, setCurrentId }) {
   const [postData, setPostData] = useState({
@@ -12,19 +12,31 @@ export default function Form({ currentId, setCurrentId }) {
     selectedFile: "",
   });
 
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((p) => p._id === currentId) : null
+  );
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (post) setPostData(post);
+  }, [post]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(createPost(postData));
+    if (currentId) {
+      dispatch(updatePost(currentId, postData));
+    } else {
+      dispatch(createPost(postData));
+    }
   };
 
   function clear() {}
   return (
     <div className="py-1 rounded-sm w-full shadow-md bg-gray-50">
       <p className="text-gray-300 text-2xl font-bold text-center pb-5">
-        Creating a Memory
+        {currentId ? "Editing" : "Creating"} a Memory
       </p>
 
       <div className="mb-5 w-full text-center">
