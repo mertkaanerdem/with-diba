@@ -1,7 +1,11 @@
 import React from "react";
 import moment from "moment";
+import { useDispatch } from "react-redux";
+
+import { deletePost, likePost } from "../../../actions/posts";
 
 export default function PostCard({ posts, setCurrentId }) {
+  const dispatch = useDispatch();
   return (
     <div className="relative m-2 rounded-2xl shadow-md flex flex-col bg-gray-50 h-full">
       <div className="max-h-52  overflow-hidden filter saturate-0 hover:saturate-100 duration-1000 rounded-t-2xl">
@@ -41,7 +45,7 @@ export default function PostCard({ posts, setCurrentId }) {
         </div>
 
         <div className="inset-x-4 absolute bottom-1 flex flex-row justify-between">
-          <button onClick={() => {}}>
+          <button onClick={() => dispatch(likePost(posts._id))}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 hover:text-red-500 duration-400 cursor-pointer "
@@ -57,7 +61,7 @@ export default function PostCard({ posts, setCurrentId }) {
             {posts.likeCount}
           </button>
 
-          <button onClick={() => {}}>
+          <button onClick={() => dispatch(deletePost(posts._id))}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 hover:text-yellow-500 duration-400 cursor-pointer "
