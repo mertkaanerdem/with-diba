@@ -30,9 +30,20 @@ export default function Form({ currentId, setCurrentId }) {
     } else {
       dispatch(createPost(postData));
     }
+    clear();
   };
 
-  function clear() {}
+  function clear() {
+    setCurrentId(null);
+    setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: "",
+    });
+  }
+
   return (
     <div className="py-1 rounded-sm w-full shadow-md bg-gray-50">
       <p className="text-gray-300 text-2xl font-bold text-center pb-5">
