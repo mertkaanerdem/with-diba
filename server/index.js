@@ -15,9 +15,6 @@ app.use("/posts", postRoutes);
 
 //https://www.mongodb.com/cloud/atlas/
 
-// const CONNECTION_URL =
-//   "mongodb+srv://mertkaanerdem:mertkaanerdem123@withdiba.ytyki.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-
 const PORT = process.env.PORT || 5000;
 
 mongoose
