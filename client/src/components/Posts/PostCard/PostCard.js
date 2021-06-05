@@ -19,8 +19,8 @@ export default function PostCard({ posts, setCurrentId }) {
       <div className="absolute inset-x-0 flex flex-row justify-between">
         <div className="rounded-sm p-1 mx-3">
           <p className="text-gray-200 font-bold text-xl">{posts.creator}</p>
-          <p className="text-gray-200 text-xs p-1 bg-black bg-opacity-60 rounded-md">
-            {moment(posts.createdAt).fromNow()}
+          <p className="text-gray-200 text-xs p-1 pl-3 bg-black bg-opacity-60 rounded-md">
+            {moment(posts.createdAt).format("DD MMMM YYYY")}
           </p>
         </div>
 
@@ -58,8 +58,8 @@ export default function PostCard({ posts, setCurrentId }) {
                 clipRule="evenodd"
               />
             </svg>
-            {posts.likeCount}
           </button>
+          <p>{posts.likeCount}</p>
 
           <button onClick={() => dispatch(deletePost(posts._id))}>
             <svg
