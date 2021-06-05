@@ -104,15 +104,20 @@ export default function Form({ currentId, setCurrentId }) {
               }
             />
           </label>
-          <label htmlFor="img" className="transition-all m-2 py-1 w-3/4  mb-2">
-            <FileBase
-              type="file"
-              multiple={false}
-              onDone={({ base64 }) =>
-                setPostData({ ...postData, selectedFile: base64 })
-              }
-            />
-          </label>
+          <div className=" w-1/2 ml-8 my-2">
+            <label
+              htmlFor="img"
+              className=" transition-all m-2 py-2 w-3/4  mb-2"
+            >
+              <FileBase
+                type="file"
+                multiple={false}
+                onDone={({ base64 }) =>
+                  setPostData({ ...postData, selectedFile: base64 })
+                }
+              />
+            </label>
+          </div>
           <label htmlFor="submit" className="transition-all m-2 shadow-md ">
             <button
               className="py-2 w-3/4 bg-blue-700 rounded-md text-gray-50 font-bold mb-2 shadow-md cursor-pointer"
