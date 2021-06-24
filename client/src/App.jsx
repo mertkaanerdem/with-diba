@@ -1,42 +1,22 @@
-import React, { useState, useEffect } from "react";
-import Form from "./components/Forms/Form";
-import Posts from "./components/Posts/Posts";
+import React from "react";
 
-import { useDispatch } from "react-redux";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./components/Home/Home";
+import Auth from "./components/Auth/Auth";
 
-import { getPosts } from "./actions/posts";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 const App = () => {
-  const [currentId, setCurrentId] = useState(null);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
-
   return (
-    <div>
+    <BrowserRouter>
       <div className="container mx-auto py-2 ">
-        <div className="m-2 rounded-md shadow-md flex justify-center items-center m-2 p-5 bg-gradient-to-r from-gray-50  to-blue-100 ">
-          <h1 className="text-4xl font-bold px-4">With Diba</h1>
-          <img
-            alt="Annesini tanımıyorum"
-            className="w-1/12 rounded-full filter saturate-0 hover:saturate-100 duration-1000"
-            src={"/diba.jpg"}
-          />
-        </div>
-
-        <div className="flex flex-col-reverse md:flex-row gap-2 px-2">
-          <div className="p-4 w-full md:w-2/3 ">
-            <Posts setCurrentId={setCurrentId} />
-          </div>
-
-          <div className="p-4 w-full md:w-1/3">
-            <Form currentId={currentId} setCurrentId={setCurrentId} />
-          </div>
-        </div>
+        <Navbar />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/auth" exact component={Auth} />
+        </Switch>
       </div>
-    </div>
+    </BrowserRouter>
   );
 };
 
