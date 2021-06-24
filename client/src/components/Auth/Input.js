@@ -10,6 +10,7 @@ const Input = ({ name, handleChange, label, placeholder, autoFocus, type }) => {
       autoFocus={autoFocus}
       type={type}
       placeholder={placeholder}
+      className="rounded m-1 p-1"
     />
   );
 };

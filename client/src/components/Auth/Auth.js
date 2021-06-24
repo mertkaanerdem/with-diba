@@ -12,22 +12,11 @@ const Auth = () => {
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: "wheat",
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
-      >
-        <p>{isSignup ? "Sign Up" : "Sign In"}</p>
+    <div className="flex flex-col items-center">
+      <div className="m-3 p-4 w-1/4 bg-yellow-600 bg-opacity-90 rounded ">
+        <p className="text-center text-white text-2xl font-extrabold tracking-wider">
+          {isSignup ? "Sign Up" : "Sign In"}
+        </p>
         <form
           style={{
             display: "flex",
@@ -78,9 +67,17 @@ const Auth = () => {
               handleChange={handleChange}
             />
           )}
-          <button type="submit">{isSignup ? "Sign Up" : "Sign In"}</button>
+          <button
+            className="bg-green-600 p-1 text-white shadow-md rounded w-1/2 self-center"
+            type="submit"
+          >
+            {isSignup ? "Sign Up" : "Sign In"}
+          </button>
 
-          <button onClick={switchMode}>
+          <button
+            className="p-1 text-white shadow-sm rounded"
+            onClick={switchMode}
+          >
             {isSignup
               ? "Already have an account? Sign In"
               : "Don't have an account? Sign Up"}
