@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { FcRight } from "react-icons/fc";
 
 function Navbar() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -24,9 +25,9 @@ function Navbar() {
   }, [location]);
 
   return (
-    <div className="m-2 rounded-md shadow-md flex justify-around items-center m-2 p-5 bg-gradient-to-r from-gray-50  to-blue-100 ">
+    <div className="m-2 rounded-md shadow-md flex justify-around items-center p-5 bg-gradient-to-r from-gray-50  to-blue-100 ">
       <div>
-        <Link className="flex flex-row items-center" to="/">
+        <Link className="flex items-center" to="/">
           <h1 className="text-4xl font-bold px-4">With Diba</h1>
           <img
             alt="Annesini tanımıyorum"
@@ -35,10 +36,23 @@ function Navbar() {
           />
         </Link>
       </div>
+      {user && (
+        <div
+          className="bg-green-500  p-1 text-white shadow-md rounded w-1/12 text-center"
+          alt={user?.result.name}
+        >
+          <img
+            className="rounded shadow-md"
+            src={user?.result.imageUrl}
+            width="100"
+          ></img>
+          <p className="text-xs py-1 font-medium">{user?.result.name}</p>
+        </div>
+      )}
 
       {user ? (
         <button
-          className="bg-red-600 hover:bg-red-800 p-1 text-white shadow-md rounded w-1/12 text-center"
+          className="bg-red-500 hover:bg-red-600 p-1 text-white shadow-md rounded w-1/12 text-center"
           onClick={logout}
         >
           {" "}
