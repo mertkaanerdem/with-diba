@@ -1,14 +1,40 @@
 import React, { useState } from "react";
 
+import { GoogleLogin } from "react-google-login";
+
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+
 import Input from "./Input";
 
 const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleSubmit = () => {};
   const handleChange = () => {};
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
+  };
+
+  const googleSuccess = async (res) => {
+    const result = res?.profileObj;
+    const token = res?.tokenId;
+
+    try {
+      dispatch({ type: "AUTH", data: { result, token } });
+
+      history.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const googleFailure = (error) => {
+    console.log(error);
+    console.log("Google Sign In was unseccessful. Try Later");
   };
 
   return (
@@ -67,12 +93,31 @@ const Auth = () => {
               handleChange={handleChange}
             />
           )}
+
           <button
-            className="bg-green-600 p-1 text-white shadow-md rounded w-1/2 self-center"
+            className="bg-green-600 hover:bg-green-800 m-2 p-1 text-white shadow-md rounded w-1/2 self-center"
             type="submit"
           >
             {isSignup ? "Sign Up" : "Sign In"}
           </button>
+
+          <GoogleLogin
+            clientId="1046672128852-jh9mhngei5p4mt4qhl779s5be61frmkf.apps.googleusercontent.com"
+            render={(renderProps) => (
+              <button
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+                className="mt-2 flex justify-center items-center rounded w-full bg-white hover:bg-gray-100 text-red-700 font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
+                type="button"
+              >
+                <FcGoogle className="ml-3 w-8 h-8" />{" "}
+                <p className="px-2">Login with Google</p>
+              </button>
+            )}
+            onSuccess={googleSuccess}
+            onFailure={googleFailure}
+            cookiePolicy="single_host_origin"
+          />
 
           <button
             className="p-1 text-white shadow-sm rounded"
