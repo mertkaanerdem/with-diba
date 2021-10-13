@@ -8,12 +8,23 @@ import { FcGoogle } from "react-icons/fc";
 
 import Input from "./Input";
 
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
+
 const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
+  const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    console.log(formData);
+  };
   const handleChange = () => {};
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
