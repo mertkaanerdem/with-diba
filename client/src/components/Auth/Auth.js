@@ -22,10 +22,13 @@ const Auth = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     console.log(formData);
   };
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
   };
