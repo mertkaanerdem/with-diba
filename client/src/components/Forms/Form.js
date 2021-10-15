@@ -49,8 +49,8 @@ export default function Form({ currentId, setCurrentId }) {
 
   if (!user?.result?.name) {
     return (
-      <div className="py-4 my-2 rounded-sm w-full shadow-md bg-gray-50">
-        <h6 className="text-center text-red-500">
+      <div className="p-10 my-2 rounded-sm w-full shadow-lg bg-gray-200">
+        <h6 className="text-xl text-center text-red-700 font-semibold">
           Please sign in to create your own memories and like other's memories.
         </h6>
       </div>
