@@ -9,11 +9,7 @@ export default function PostCard({ posts, setCurrentId }) {
   return (
     <div className="relative m-2 rounded-2xl shadow-md flex flex-col bg-gray-50 h-full">
       <div className="max-h-52  overflow-hidden filter saturate-0 hover:saturate-100 duration-1000 rounded-t-2xl">
-        <img
-          src={posts.selectedFile}
-          className="w-full"
-          alt="Annesini tanımıyorum"
-        />
+        <img src={posts.selectedFile} className="w-full" alt={posts.name} />
       </div>
 
       <div className="absolute inset-x-0 flex flex-row justify-between">
@@ -40,7 +36,9 @@ export default function PostCard({ posts, setCurrentId }) {
         </div>
 
         <div>
-          <p className="font-bold text-2xl text-center">{posts.title}</p>
+          <p className="font-bold text-2xl text-center text-green-500">
+            {posts.title}
+          </p>
           <p className="py-2 text-justify">{posts.message}</p>
         </div>
 
