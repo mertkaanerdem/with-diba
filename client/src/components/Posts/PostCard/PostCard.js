@@ -2,10 +2,41 @@ import React from "react";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
+
 import { deletePost, likePost } from "../../../actions/posts";
 
 export default function PostCard({ posts, setCurrentId }) {
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const Likes = () => {
+    if (posts.likes.length > 0) {
+      return posts.likes.find(
+        (like) => like == (user?.result?.googleId || user?.result?._id)
+      ) ? (
+        <>
+          <ThumbUpAltIcon fontSize="small" />
+          &nbsp;
+          {posts.likes.length > 2
+            ? `You and ${posts.likes.length - 1} others`
+            : `${posts.likes.length} like${posts.likes.length > 1 ? "s" : ""}`}
+        </>
+      ) : (
+        <>
+          <ThumbUpOffAltIcon fontSize="small" />
+          &nbsp;{posts.likes.length}{" "}
+          {posts.likes.length == 1 ? "like" : "likes"}
+        </>
+      );
+    }
+    return (
+      <>
+        <ThumbUpOffAltIcon fontSize="small" />
+        &nbsp;Like
+      </>
+    );
+  };
   return (
     <div className="relative m-2 rounded-2xl shadow-md flex flex-col bg-gray-50 h-full">
       <div className="max-h-52  overflow-hidden filter saturate-0 hover:saturate-100 duration-1000 rounded-t-2xl">
@@ -43,21 +74,12 @@ export default function PostCard({ posts, setCurrentId }) {
         </div>
 
         <div className="inset-x-4 absolute bottom-1 flex flex-row justify-between">
-          <button onClick={() => dispatch(likePost(posts._id))}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 hover:text-red-500 duration-400 cursor-pointer "
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                clipRule="evenodd"
-              />
-            </svg>
+          <button
+            disabled={!user?.result}
+            onClick={() => dispatch(likePost(posts._id))}
+          >
+            <Likes />
           </button>
-          <p>{posts.likeCount}</p>
 
           <button onClick={() => dispatch(deletePost(posts._id))}>
             <svg
