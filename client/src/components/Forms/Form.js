@@ -5,16 +5,28 @@ import { createPost, updatePost } from "../../actions/posts";
 
 export default function Form({ currentId, setCurrentId }) {
   const [postData, setPostData] = useState({
-    creator: "",
+    /*  creator: "",*/
     title: "",
     message: "",
     tags: "",
     selectedFile: "",
   });
 
+  const user = JSON.parse(localStorage.getItem("profile"));
+
   const post = useSelector((state) =>
     currentId ? state.posts.find((p) => p._id === currentId) : null
   );
+  function clear() {
+    setCurrentId(null);
+    setPostData({
+      /*   creator: "",*/
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: "",
+    });
+  }
 
   const dispatch = useDispatch();
 
@@ -25,23 +37,24 @@ export default function Form({ currentId, setCurrentId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (currentId) {
-      dispatch(updatePost(currentId, postData));
+    if (currentId === 0) {
+      dispatch(createPost({ ...postData, name: user?.result?.name }));
     } else {
-      dispatch(createPost(postData));
+      dispatch(
+        updatePost(currentId, { ...postData, name: user?.result?.name })
+      );
+      clear();
     }
-    clear();
   };
 
-  function clear() {
-    setCurrentId(null);
-    setPostData({
-      creator: "",
-      title: "",
-      message: "",
-      tags: "",
-      selectedFile: "",
-    });
+  if (!user?.result?.name) {
+    return (
+      <div className="py-1 rounded-sm w-full shadow-md bg-gray-50">
+        <h6>
+          Please Sign In to create your own memories and like other's memories.
+        </h6>
+      </div>
+    );
   }
 
   return (
@@ -52,7 +65,9 @@ export default function Form({ currentId, setCurrentId }) {
 
       <div className="mb-5 w-full text-center">
         <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-          <label htmlFor="creator" className="transition-all shadow-md ">
+          {/*
+
+            <label htmlFor="creator" className="transition-all shadow-md ">
             <input
               id="creator"
               type="text"
@@ -63,8 +78,9 @@ export default function Form({ currentId, setCurrentId }) {
               onChange={(e) =>
                 setPostData({ ...postData, creator: e.target.value })
               }
-            />
+              />
           </label>
+            */}
           <label htmlFor="title" className="transition-all m-2 shadow-md ">
             <input
               id="title"
