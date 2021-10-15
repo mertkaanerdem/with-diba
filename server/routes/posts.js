@@ -1,7 +1,7 @@
 import express from "express";
 import {
   getPosts,
-  createPosts,
+  createPost,
   updatePost,
   deletePost,
   likePost,
@@ -11,7 +11,7 @@ import auth from "../middleware/auth.js";
 const router = express.Router();
 
 router.get("/", getPosts);
-router.post("/", auth, createPosts); //auth dediği auth middleware den geliyor. auth olmadan post yaratılamaz
+router.post("/", auth, createPost); //auth dediği auth middleware den geliyor. auth olmadan post yaratılamaz
 router.patch("/:id", auth, updatePost); //auth dediği auth middleware den geliyor. auth olmadan post güncellenemez
 router.delete("/:id", auth, deletePost); //auth dediği auth middleware den geliyor. auth olmadan post silinemez
 router.patch("/:id/likePost", auth, likePost); //auth dediği auth middleware den geliyor. auth olmadan post beğenilemez

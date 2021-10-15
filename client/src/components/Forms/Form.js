@@ -11,14 +11,15 @@ export default function Form({ currentId, setCurrentId }) {
     tags: "",
     selectedFile: "",
   });
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((message) => message._id === currentId) : null
+  );
+  const dispatch = useDispatch();
 
   const user = JSON.parse(localStorage.getItem("profile"));
 
-  const post = useSelector((state) =>
-    currentId ? state.posts.find((p) => p._id === currentId) : null
-  );
   function clear() {
-    setCurrentId(null);
+    setCurrentId(0);
     setPostData({
       /*   creator: "",*/
       title: "",
@@ -28,8 +29,6 @@ export default function Form({ currentId, setCurrentId }) {
     });
   }
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     if (post) setPostData(post);
   }, [post]);
@@ -37,8 +36,9 @@ export default function Form({ currentId, setCurrentId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (currentId === 0) {
+    if (currentId == 0) {
       dispatch(createPost({ ...postData, name: user?.result?.name }));
+      clear();
     } else {
       dispatch(
         updatePost(currentId, { ...postData, name: user?.result?.name })
