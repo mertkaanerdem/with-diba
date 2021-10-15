@@ -52,12 +52,15 @@ export default function PostCard({ posts, setCurrentId }) {
         </div>
 
         <div className="p-1 mx-3">
-          <button
-            className="text-gray-200  font-bold cursor-pointer"
-            onClick={() => setCurrentId(posts._id)}
-          >
-            ...
-          </button>
+          {(user?.result?.googleId === posts?.creator ||
+            user?.result?._id === posts?.creator) && (
+            <button
+              className="text-gray-200  font-bold cursor-pointer"
+              onClick={() => setCurrentId(posts._id)}
+            >
+              ...
+            </button>
+          )}
         </div>
       </div>
 
